@@ -1,0 +1,50 @@
+version: '3'
+
+services:
+  app:
+    build: .
+    command: ./.docker/start.sh
+    container_name: startsoft-app
+    ports: 
+      - 3010:3000
+    environment:
+      - POSTGRES_HOST=localhost
+      - POSTGRES_DATABASE=startsoft_db
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    volumes: 
+      - .:/home/node/app
+    depends_on:
+      - postgresql
+      - redis
+
+  postgresql:
+    container_name: startsoft-postgresql
+    image: postgres:9.4
+    environment:
+      - POSTGRES_HOST=localhost
+      - POSTGRES_DATABASE=startsoft_db
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+    ports:
+      - "5434:5432" 
+    volumes:
+      - postgres_data:/var/lib/postgresql/startsoft-postgresql
+      - ./scripts:/docker-entrypoint-initdb.d
+    command: ["postgres", "-c", "log_statement=all"]
+  
+  redis:
+    container_name: startsoft-redis
+    image: redis:latest
+    ports:
+      - 6379:6379
+    volumes:
+      - redis_data:/data
+
+volumes:
+  postgres_data:
+    driver: local
+  redis_data:
+    driver: local

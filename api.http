@@ -1,0 +1,16 @@
+@hostname = localhost
+@port = 3000
+@host = {{hostname}}:{{port}}
+@contentType = application/json
+
+### create movies
+POST http://{{host}}/movies
+Content-Type: {{contentType}}
+
+{
+  "title": "Drama",
+  "description": "some description",
+  "director": "Herlander Bentos",
+  "releaseYear": 2014,
+  "rating": 4.5
+}
