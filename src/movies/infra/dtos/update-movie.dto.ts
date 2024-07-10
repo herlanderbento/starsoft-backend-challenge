@@ -1,8 +1,13 @@
-import { CreateMovieInput } from '@/movies/application';
-import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { UpdateMovieInput } from '@/movies/application';
+import { OmitType } from '@nestjs/mapped-types';
+import { ApiPropertyOptional } from '@nestjs/swagger';
 
-export class CreateMovieDto implements CreateMovieInput {
-  @ApiProperty({
+export class UpdateMovieInputWithoutId extends OmitType(UpdateMovieInput, [
+  'id',
+] as const) {}
+
+export class UpdateMovieDto implements UpdateMovieInputWithoutId {
+  @ApiPropertyOptional({
     example: 'The Godfather',
     description: 'Title of the movie',
   })
@@ -14,19 +19,19 @@ export class CreateMovieDto implements CreateMovieInput {
   })
   description?: string;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     example: 'Francis Ford Coppola',
     description: 'Director of the movie',
   })
   director: string;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     example: 1972,
     description: 'Release year of the movie',
   })
   releaseYear: number;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     example: 9.2,
     description: 'Rating of the movie',
   })

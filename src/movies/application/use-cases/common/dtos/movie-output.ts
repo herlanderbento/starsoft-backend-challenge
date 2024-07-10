@@ -7,8 +7,8 @@ export type MovieOutput = {
   director: string;
   releaseYear: number;
   rating: number;
-  createdAt?: Date;
-  updatedAt?: Date;
+  createdAt: Date;
+  updatedAt: Date;
 };
 
 export class MovieOutputMapper {

@@ -24,6 +24,8 @@ export class MovieTypeOrmMapper {
         director: model.director,
         releaseYear: model.releaseYear,
         rating: model.rating,
+        createdAt: model.createdAt,
+        updatedAt: model.updatedAt,
       },
       new EntityID(model.id),
     );

@@ -8,9 +8,33 @@ POST http://{{host}}/movies
 Content-Type: {{contentType}}
 
 {
-  "title": "Drama",
+  "title": "Movie 1",
   "description": "some description",
   "director": "Herlander Bentos",
   "releaseYear": 2014,
   "rating": 4.5
 }
+
+### list movies
+GET http://{{host}}/movies?filter=
+Content-Type: {{contentType}}
+
+### get movie
+GET  http://{{host}}/movies/c69e08a4-200f-4449-9738-cd9753e9fdc9
+Content-Type: {{contentType}}
+
+### update movies
+PATCH  http://{{host}}/movies/c69e08a4-200f-4449-9738-cd9753e9fdc9
+Content-Type: {{contentType}}
+
+{
+  "title": "Movie",
+  "description": "some description",
+  "director": "Herlander Bentos",
+  "releaseYear": 2015,
+  "rating": 4.5
+}
+
+### update movies
+DELETE  http://{{host}}/movies/c69e08a4-200f-4449-9738-cd9753e9fdc9
+Content-Type: {{contentType}}

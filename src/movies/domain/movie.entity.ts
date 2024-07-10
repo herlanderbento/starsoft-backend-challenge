@@ -6,8 +6,8 @@ export type MovieProps = {
   director: string;
   releaseYear: number;
   rating: number;
-  createdAt?: Date;
-  updatedAt?: Date;
+  createdAt: Date;
+  updatedAt: Date;
 };
 
 export class Movie extends AggregateRoot<MovieProps> {
@@ -46,7 +46,7 @@ export class Movie extends AggregateRoot<MovieProps> {
   static create(
     props: Optional<MovieProps, 'createdAt' | 'updatedAt'>,
     id?: EntityID,
-  ) {
+  ): Movie {
     return new Movie(
       {
         ...props,
@@ -55,6 +55,10 @@ export class Movie extends AggregateRoot<MovieProps> {
       },
       id,
     );
+  }
+
+  update(props: Partial<MovieProps>): void {
+    Object.assign(this.props, { ...props, updatedAt: new Date() });
   }
 
   toJSON() {

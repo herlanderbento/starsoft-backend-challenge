@@ -5,7 +5,5 @@ import { MoviesModule } from './movies/infra/movies.module';
 
 @Module({
   imports: [ConfigModule.forRoot(), MoviesModule, DatabaseModule],
-  controllers: [],
-  providers: [],
 })
 export class AppModule {}
