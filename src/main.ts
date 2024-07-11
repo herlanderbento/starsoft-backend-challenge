@@ -10,7 +10,15 @@ async function bootstrap() {
     .setTitle('Movie API')
     .setDescription('The movies API description')
     .setVersion('1.0')
+    .addBearerAuth({
+      description: 'Inform JWT to authorize access',
+      name: 'Authorization',
+      scheme: 'Bearer',
+      type: 'http',
+      in: 'Header',
+    })
     .build();
+
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
 

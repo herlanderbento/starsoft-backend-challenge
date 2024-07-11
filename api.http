@@ -2,13 +2,25 @@
 @port = 3000
 @host = {{hostname}}:{{port}}
 @contentType = application/json
+@accessToken =  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImhlcmxhbmRlcmJlbnRvIiwiaWF0IjoxNzIwNjU2NTg0LCJleHAiOjE3MjA2NTY2NDR9.sf14BHNkOsYxZa_WyPMJYLaknN3k9ZFdjToqSxV2s0M
+
+
+### login
+POST http://{{host}}/auth/login
+Content-Type: {{contentType}}
+
+{
+  "username": "herlanderbento",
+  "password": "herlanderbento"
+}
 
 ### create movies
 POST http://{{host}}/movies
 Content-Type: {{contentType}}
+Authorization: Bearer {{accessToken}}
 
 {
-  "title": "Movie 1",
+  "title": "Movie 3",
   "description": "some description",
   "director": "Herlander Bentos",
   "releaseYear": 2014,
@@ -38,3 +50,8 @@ Content-Type: {{contentType}}
 ### update movies
 DELETE  http://{{host}}/movies/c69e08a4-200f-4449-9738-cd9753e9fdc9
 Content-Type: {{contentType}}
+
+
+### profile
+GET http://{{host}}/auth/profile
+Authorization: Bearer {{accessToken}}
